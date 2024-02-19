@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -xe
 
+# Disable swap
+sudo swapoff -a
+sudo sed -i '/ swap / s/^/#/' /etc/fstab
+
 # Configure required modules
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
